@@ -299,6 +299,22 @@ body {
     margin: 0 auto;
 }
 
+.function-selector-container-all-images {
+    display: flex;
+    margin: 10px auto;
+    padding: 2rem;
+    max-width: 1400px;
+}
+
+.function-selector-container-all-images>div {
+    width: 100%;
+}
+
+.function-selector-container-all-images .card-image-container {
+    max-height: 40vh !important;
+    width: 100%;
+}
+
 .function-card {
     background: white;
     border-radius: 12px;

@@ -1,7 +1,15 @@
 import { useEffect, useState } from 'react';
 import { IoMdArrowRoundBack } from "react-icons/io";
 import './App.css';
-import { GenPaperA, GenPaperB, GenPaperC, GenPaperD, GenPaperE, GenPaperF, GenPaperG, GenPaperH, GenPaperI, GenPaperJ, GenPaperK, GenPaperL, GenPaperM, GenPaperN } from "./GenPaper";
+import {
+  GenPaperA, GenPaperB, GenPaperC, GenPaperD,
+  GenPaperE, GenPaperF, GenPaperG, GenPaperH,
+  GenPaperI, GenPaperJ, GenPaperK, GenPaperL,
+  GenPaperM, GenPaperN, GenPaperO, GenPaperP,
+  GenPaperQ, GenPaperR, GenPaperS, GenPaperT,
+  GenPaperU, GenPaperV, GenPaperW, GenPaperX,
+  GenPaperY
+} from "./GenPaper";
 import { v4 as uuidv4 } from 'uuid';
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
@@ -31,11 +39,19 @@ function App() {
     { func: GenPaperL, imag: "/type12.png" },
     { func: GenPaperM, imag: "/type13.png" },
     { func: GenPaperN, imag: "/type14.png" },
+    { func: GenPaperO, imag: "/type15.png" },
+    { func: GenPaperP, imag: "/type16.png" },
+    { func: GenPaperQ, imag: "/type17.png" },
+    { func: GenPaperR, imag: "/type18.png" },
+    { func: GenPaperS, imag: "/type19.png" },
+    { func: GenPaperT, imag: "/type20.png" },
+    { func: GenPaperU, imag: "/type21.png" },
+    { func: GenPaperV, imag: "/type22.png" },
+    { func: GenPaperW, imag: "/type23.png" },
+    { func: GenPaperX, imag: "/type24.png" },
+    { func: GenPaperY, imag: "/type25.png" }
   ]
-  /**
- * @param {string[]} dataUrls
- * @param {string} zipName
- */
+
   const downloadImagesAsZip = async (dataUrls, zipName = "images.zip") => {
     const zip = new JSZip();
     dataUrls.forEach((dataUrl, index) => {
@@ -307,49 +323,54 @@ function App() {
               </div>}
 
           </main> :
-            <main className="function-selector-container">
-              <div
-                className={`function-card ${0 === activeIndex ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedAll(true)
-                }}
-              >
-                <div className="card-image-container">
-                  <img
-                    src={"/combined.png"}
-                    alt={`Paper Folder All Types`}
-                    className="function-image"
-                  />
-                  <div className="card-overlay">
-                    <span className="overlay-text">Select All</span>
-                  </div>
-                </div>
-                <h3 className="card-title">Paper Folding All Types</h3>
-                {/* <p className="card-description">{item.description || "Standard document folding"}</p> */}
-              </div>
-              {functions.map((item, index) => (
+            <main >
+              <section className='function-selector-container-all-images'>
                 <div
-                  key={index}
-                  className={`function-card ${index === activeIndex ? 'active' : ''}`}
+                  className={`function-card ${0 === activeIndex ? 'active' : ''}`}
                   onClick={() => {
-                    setFunction(() => item.func);
-                    setActiveIndex(index);
+                    setSelectedAll(true)
                   }}
                 >
                   <div className="card-image-container">
                     <img
-                      src={item.imag}
-                      alt={`Paper Folder Label ${index + 1}`}
+                      src={"/combined.png"}
+                      alt={`Paper Folder All Types`}
                       className="function-image"
                     />
                     <div className="card-overlay">
-                      <span className="overlay-text">Select</span>
+                      <span className="overlay-text">Select All</span>
                     </div>
                   </div>
-                  <h3 className="card-title">Paper Folding Label {index + 1}</h3>
+                  <h3 className="card-title">Paper Folding All Types</h3>
                   {/* <p className="card-description">{item.description || "Standard document folding"}</p> */}
                 </div>
-              ))}
+              </section>
+              <section className="function-selector-container">
+                {functions.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`function-card ${index === activeIndex ? 'active' : ''}`}
+                    onClick={() => {
+                      setFunction(() => item.func);
+                      setActiveIndex(index);
+                    }}
+                  >
+                    <div className="card-image-container">
+                      <img
+                        src={item.imag}
+                        alt={`Paper Folder Label ${index + 1}`}
+                        className="function-image"
+                      />
+                      <div className="card-overlay">
+                        <span className="overlay-text">Select</span>
+                      </div>
+                    </div>
+                    <h3 className="card-title">Paper Folding Label {index + 1}</h3>
+                    {/* <p className="card-description">{item.description || "Standard document folding"}</p> */}
+                  </div>
+                ))}
+              </section>
+
             </main>}
         </>
       }
