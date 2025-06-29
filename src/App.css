@@ -259,6 +259,10 @@ body {
         margin: 1rem;
     }
 
+    .function-selector-container-all-images {
+        padding: 1.5rem !important;
+    }
+
     .info-container {
         width: 90%;
         margin: 10px auto;
@@ -285,6 +289,10 @@ body {
 
     .placeholder-image {
         max-width: 150px;
+    }
+
+    .function-selector-container-all-images {
+        padding: 1rem !important;
     }
 }
 

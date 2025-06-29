@@ -5954,6 +5954,1625 @@ const GenPaperY = (url1, url2) => {
     });
 };
 
+const GenPaperZ = (url1, url2) => {
+    const w = 1000, h = 1000;
+    const x = 0, y = 0;
+
+    return new Promise((resolve, reject) => {
+        const img1 = new Image();
+        const img2 = new Image();
+        const img3 = new Image();
+        const img4 = new Image();
+        const img5 = new Image();
+        const img6 = new Image();
+        const img7 = new Image();
+        const bgImg = new Image();
+
+        img1.crossOrigin = "anonymous";
+        img2.crossOrigin = "anonymous";
+        img3.crossOrigin = "anonymous";
+        img4.crossOrigin = "anonymous";
+        img5.crossOrigin = "anonymous";
+        img6.crossOrigin = "anonymous";
+        img7.crossOrigin = "anonymous";
+        bgImg.crossOrigin = "anonymous";
+
+        img1.src = url2;
+        img2.src = url1;
+        img3.src = url1;
+        img4.src = url1;
+        img5.src = url1;
+        img6.src = url1;
+        img7.src = url1;
+        bgImg.src = "/bgimage.png";
+
+        let cropped1 = null;
+        let cropped2 = null;
+        let cropped3 = null;
+        let cropped4 = null;
+        let cropped5 = null;
+        let cropped6 = null;
+        let cropped7 = null;
+        let bgLoaded = false;
+
+        const tryCombine = () => {
+            if (cropped1 && cropped2 && cropped3 && cropped4 && cropped5 && cropped6 && cropped7 && bgLoaded) {
+                const finalCanvas = document.createElement("canvas");
+                finalCanvas.width = 2000;
+                finalCanvas.height = 2000;
+                const ctx = finalCanvas.getContext("2d");
+                ctx.drawImage(bgImg, 0, 0, finalCanvas.width, finalCanvas.height);
+
+                const imgA = new Image();
+                const imgB = new Image();
+                const imgC = new Image();
+                const imgD = new Image();
+                const imgE = new Image();
+                const imgF = new Image();
+                const imgG = new Image();
+                imgA.onload = () => {
+                    imgB.onload = () => {
+                        imgC.onload = () => {
+                            imgD.onload = () => {
+                                imgE.onload = () => {
+                                    imgF.onload = () => {
+                                        imgG.onload = () => {
+                                            ctx.drawImage(imgA, 0, 0, 1000, 1000);
+                                            ctx.drawImage(imgB, 1000, 0, 1000, 1000);
+                                            ctx.drawImage(imgC, 1000, 0, 1000, 1000);
+                                            ctx.drawImage(imgD, 0, 1000, 1000, 1000);
+                                            ctx.drawImage(imgE, 500, 1500, 1000, 1000);
+                                            ctx.drawImage(imgF, -500, 1500, 1000, 1000);
+                                            ctx.drawImage(imgG, 1500, 1500, 1000, 1000);
+                                            const finalUrl = finalCanvas.toDataURL();
+                                            resolve(finalUrl);
+                                        }
+                                        imgG.src = cropped7
+                                    }
+                                    imgF.src = cropped6
+                                }
+                                imgE.src = cropped5
+                            };
+                            imgD.src = cropped4
+                        };
+                        imgC.src = cropped3;
+                    };
+                    imgB.src = cropped2;
+                };
+                imgA.src = cropped1;
+            }
+        };
+
+        img1.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img1, 0, 0, 1000, 1000);
+            cropped1 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img2.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(0, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img2, 0, 0, w, h);
+            cropped2 = canvas.toDataURL();
+            tryCombine();
+        };
+        img3.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 0);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img3, 0, 0, 1000, 1000);
+            cropped3 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img4.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(0, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(2 * (Math.PI / 2));
+            ctx.drawImage(img4, -w / 2, -h / 2, w, h);
+            cropped4 = canvas.toDataURL();
+            tryCombine();
+        };
+        img5.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(1000, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img5, -w / 2, -h / 2, w, h);
+            ctx.restore();
+            cropped5 = canvas.toDataURL();
+            tryCombine();
+        };
+        img6.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 0);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(1000, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img7, -w / 2, -h / 2, w, h);
+            cropped6 = canvas.toDataURL();
+            tryCombine();
+        };
+        img7.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(500, 0);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(- (Math.PI / 2));
+            ctx.drawImage(img7, -w / 2, -h / 2, w, h);
+            ctx.restore();
+            cropped7 = canvas.toDataURL();
+            tryCombine();
+        };
+        bgImg.onload = () => {
+            bgLoaded = true;
+            tryCombine();
+        };
+
+        img1.onerror = reject;
+        img2.onerror = reject;
+        img3.onerror = reject;
+        img4.onerror = reject;
+        img5.onerror = reject;
+        img6.onerror = reject;
+        img7.onerror = reject;
+        bgImg.onerror = reject;
+    });
+};
+
+const GenPaperA1 = (url1, url2) => {
+    const w = 1000, h = 1000;
+    const x = 0, y = 0;
+
+    return new Promise((resolve, reject) => {
+        const img1 = new Image();
+        const img2 = new Image();
+        const img3 = new Image();
+        const img4 = new Image();
+        const img5 = new Image();
+        const bgImg = new Image();
+
+        img1.crossOrigin = "anonymous";
+        img2.crossOrigin = "anonymous";
+        img3.crossOrigin = "anonymous";
+        img4.crossOrigin = "anonymous";
+        img5.crossOrigin = "anonymous";
+        bgImg.crossOrigin = "anonymous";
+
+        img1.src = url1;
+        img2.src = url2;
+        img3.src = url2;
+        img4.src = url2;
+        img5.src = url2;
+        bgImg.src = "/bgimage.png";
+
+        let cropped1 = null;
+        let cropped2 = null;
+        let cropped3 = null;
+        let cropped4 = null;
+        let cropped5 = null;
+        let bgLoaded = false;
+
+        const tryCombine = () => {
+            if (cropped1 && cropped2 && cropped3 && cropped4 && cropped5 && bgLoaded) {
+                const finalCanvas = document.createElement("canvas");
+                finalCanvas.width = 2000;
+                finalCanvas.height = 2000;
+                const ctx = finalCanvas.getContext("2d");
+                ctx.drawImage(bgImg, 0, 0, finalCanvas.width, finalCanvas.height);
+
+                const imgA = new Image();
+                const imgB = new Image();
+                const imgC = new Image();
+                const imgD = new Image();
+                const imgE = new Image();
+                imgA.onload = () => {
+                    imgB.onload = () => {
+                        imgC.onload = () => {
+                            imgD.onload = () => {
+                                imgE.onload = () => {
+                                    ctx.drawImage(imgA, 500, 0, 1000, 1000);
+                                    ctx.drawImage(imgB, -500, 0, 1000, 1000);
+                                    ctx.drawImage(imgC, 1500, 0, 1000, 1000);
+                                    ctx.drawImage(imgD, 1500, 1000, 1000, 1000);
+                                    ctx.drawImage(imgE, 0, 1500, 1000, 1000);
+                                    const finalUrl = finalCanvas.toDataURL();
+                                    resolve(finalUrl);
+                                }
+                                imgE.src = cropped5
+                            };
+                            imgD.src = cropped4
+                        };
+                        imgC.src = cropped3;
+                    };
+                    imgB.src = cropped2;
+                };
+                imgA.src = cropped1;
+            }
+        };
+
+        img1.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img1, 0, 0, 1000, 1000);
+            cropped1 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img2.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 0);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(750, 250);
+            ctx.lineTo(500, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img2, 0, 0, w, h);
+            cropped2 = canvas.toDataURL();
+            tryCombine();
+        };
+        img3.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img3, 0, 0, 1000, 1000);
+            cropped3 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img4.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(500, 1000);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img4, -w / 2, -h / 2, w, h);
+            cropped4 = canvas.toDataURL();
+            tryCombine();
+        };
+        img5.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 500);
+            ctx.lineTo(750, 250);
+            ctx.lineTo(1000, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img5, 0, 0, w, h);
+            ctx.restore();
+            cropped5 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        bgImg.onload = () => {
+            bgLoaded = true;
+            tryCombine();
+        };
+
+        img1.onerror = reject;
+        img2.onerror = reject;
+        img3.onerror = reject;
+        img4.onerror = reject;
+        img5.onerror = reject;
+        bgImg.onerror = reject;
+    });
+};
+
+const GenPaperA2 = (url1, url2) => {
+    const w = 1000, h = 1000;
+    const x = 0, y = 0;
+
+    return new Promise((resolve, reject) => {
+        const img1 = new Image();
+        const img2 = new Image();
+        const img3 = new Image();
+        const img4 = new Image();
+        const img5 = new Image();
+        const img6 = new Image();
+        const img7 = new Image();
+        const img8 = new Image();
+        const bgImg = new Image();
+
+        img1.crossOrigin = "anonymous";
+        img2.crossOrigin = "anonymous";
+        img3.crossOrigin = "anonymous";
+        img4.crossOrigin = "anonymous";
+        img5.crossOrigin = "anonymous";
+        img6.crossOrigin = "anonymous";
+        img7.crossOrigin = "anonymous";
+        img8.crossOrigin = "anonymous";
+        bgImg.crossOrigin = "anonymous";
+
+        img1.src = url1;
+        img2.src = url1;
+        img3.src = url1;
+        img4.src = url1;
+        img5.src = url1;
+        img6.src = url2;
+        img7.src = url2;
+        img8.src = url2;
+        bgImg.src = "/bgimage.png";
+
+        let cropped1 = null;
+        let cropped2 = null;
+        let cropped3 = null;
+        let cropped4 = null;
+        let cropped5 = null;
+        let cropped6 = null;
+        let cropped7 = null;
+        let cropped8 = null;
+        let bgLoaded = false;
+
+        const tryCombine = () => {
+            if (cropped1 && cropped2 && cropped3 && cropped4 && cropped5 && cropped6 && cropped7 && cropped8 && bgLoaded) {
+                const finalCanvas = document.createElement("canvas");
+                finalCanvas.width = 2000;
+                finalCanvas.height = 2000;
+                const ctx = finalCanvas.getContext("2d");
+
+                ctx.drawImage(bgImg, 0, 0, finalCanvas.width, finalCanvas.height);
+
+                const imgA = new Image();
+                const imgB = new Image();
+                const imgC = new Image();
+                const imgD = new Image();
+                const imgE = new Image();
+                const imgF = new Image();
+                const imgG = new Image();
+                const imgH = new Image();
+                imgA.onload = () => {
+                    imgB.onload = () => {
+                        imgC.onload = () => {
+                            imgD.onload = () => {
+                                imgE.onload = () => {
+                                    imgF.onload = () => {
+                                        imgG.onload = () => {
+                                            imgH.onload = () => {
+                                                ctx.drawImage(imgA, 500, 500, 1000, 1000);
+                                                ctx.drawImage(imgB, 500, 0, 1000, 1000);
+                                                ctx.drawImage(imgC, 500, -500, 1000, 1000);
+                                                ctx.drawImage(imgD, 1500, 500, 1000, 1000);
+                                                ctx.drawImage(imgE, 1000, 500, 1000, 1000);
+                                                ctx.drawImage(imgF, 1500, -500, 1000, 1000);
+                                                ctx.drawImage(imgG, -500, 500, 1000, 1000);
+                                                ctx.drawImage(imgH, 500, 1500, 1000, 1000);
+                                                const finalUrl = finalCanvas.toDataURL();
+                                                resolve(finalUrl);
+                                            }
+                                            imgH.src = cropped8
+                                        }
+                                        imgG.src = cropped7
+                                    }
+                                    imgF.src = cropped6
+                                }
+                                imgE.src = cropped5
+                            };
+                            imgD.src = cropped4
+                        };
+                        imgC.src = cropped3;
+                    };
+                    imgB.src = cropped2;
+                };
+                imgA.src = cropped1;
+            }
+        };
+
+        img1.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 250);
+            ctx.lineTo(750, 250);
+            ctx.lineTo(750, 1000);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img1, 0, 0, 1000, 1000);
+            cropped1 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img2.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(750, 250);
+            ctx.lineTo(0, 250);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img2, 0, 0, w, h);
+            cropped2 = canvas.toDataURL();
+            tryCombine();
+        };
+        img3.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.beginPath();
+            ctx.moveTo(750, 750);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(1000, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img3, -w / 2, -h / 2, w, h);
+            cropped3 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img4.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(250, 250);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img4, -w / 2, -h / 2, w, h);
+            cropped4 = canvas.toDataURL();
+            tryCombine();
+        };
+        img5.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(750, 250);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(1000, 1000);
+            ctx.lineTo(0, 1000);
+            ctx.lineTo(750, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img5, 0, 0, w, h);
+            ctx.restore();
+            cropped5 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img6.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(500, 1000);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(- (Math.PI / 2));
+            ctx.drawImage(img6, -w / 2, -h / 2, w, h);
+            cropped6 = canvas.toDataURL();
+            tryCombine();
+        };
+        img7.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 0);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 1000);
+            ctx.lineTo(500, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.drawImage(img7, 0, 0, w, h);
+            ctx.restore();
+            cropped7 = canvas.toDataURL();
+            tryCombine();
+        };
+        img8.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(500, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(2 * (Math.PI / 2));
+            ctx.drawImage(img8, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped8 = canvas.toDataURL();
+            tryCombine();
+        };
+
+
+        bgImg.onload = () => {
+            bgLoaded = true;
+            tryCombine();
+        };
+
+        img1.onerror = reject;
+        img2.onerror = reject;
+        img3.onerror = reject;
+        img4.onerror = reject;
+        img5.onerror = reject;
+        img6.onerror = reject;
+        img7.onerror = reject;
+        img8.onerror = reject;
+
+        bgImg.onerror = reject;
+    });
+};
+
+const GenPaperA3 = (url1, url2) => {
+    const w = 1000, h = 1000;
+    const x = 0, y = 0;
+
+    return new Promise((resolve, reject) => {
+        const img1 = new Image();
+        const img2 = new Image();
+        const img3 = new Image();
+        const img4 = new Image();
+        const img5 = new Image();
+        const img6 = new Image();
+        const img7 = new Image();
+        const img8 = new Image();
+        const img9 = new Image();
+        const bgImg = new Image();
+
+        img1.crossOrigin = "anonymous";
+        img2.crossOrigin = "anonymous";
+        img3.crossOrigin = "anonymous";
+        img4.crossOrigin = "anonymous";
+        img5.crossOrigin = "anonymous";
+        img6.crossOrigin = "anonymous";
+        img7.crossOrigin = "anonymous";
+        img8.crossOrigin = "anonymous";
+        img9.crossOrigin = "anonymous";
+        bgImg.crossOrigin = "anonymous";
+
+        img1.src = url2;
+        img2.src = url2;
+        img3.src = url2;
+        img4.src = url2;
+        img5.src = url1;
+        img6.src = url1;
+        img7.src = url1;
+        img8.src = url1;
+        img9.src = url1;
+        bgImg.src = "/bgimage.png";
+
+        let cropped1 = null;
+        let cropped2 = null;
+        let cropped3 = null;
+        let cropped4 = null;
+        let cropped5 = null;
+        let cropped6 = null;
+        let cropped7 = null;
+        let cropped8 = null;
+        let cropped9 = null;
+        let bgLoaded = false;
+
+        const tryCombine = () => {
+            if (cropped1 && cropped2 && cropped3 && cropped4 && cropped5 && cropped6 && cropped7 && cropped8 && cropped9 && bgLoaded) {
+                const finalCanvas = document.createElement("canvas");
+                finalCanvas.width = 2000;
+                finalCanvas.height = 2000;
+                const ctx = finalCanvas.getContext("2d");
+
+                ctx.drawImage(bgImg, 0, 0, finalCanvas.width, finalCanvas.height);
+
+                const imgA = new Image();
+                const imgB = new Image();
+                const imgC = new Image();
+                const imgD = new Image();
+                const imgE = new Image();
+                const imgF = new Image();
+                const imgG = new Image();
+                const imgH = new Image();
+                const imgI = new Image();
+                imgA.onload = () => {
+                    imgB.onload = () => {
+                        imgC.onload = () => {
+                            imgD.onload = () => {
+                                imgE.onload = () => {
+                                    imgF.onload = () => {
+                                        imgG.onload = () => {
+                                            imgH.onload = () => {
+                                                imgI.onload = () => {
+                                                    ctx.drawImage(imgA, -500, -500, 1000, 1000);
+                                                    ctx.drawImage(imgB, 1500, 500, 1000, 1000);
+                                                    ctx.drawImage(imgC, -500, 500, 1000, 1000);
+                                                    ctx.drawImage(imgD, 1500, 1500, 1000, 1000);
+                                                    ctx.drawImage(imgE, 500, -500, 1000, 1000);
+                                                    ctx.drawImage(imgF, 500, 500, 1000, 1000);
+                                                    ctx.drawImage(imgG, 1500, -500, 1000, 1000);
+                                                    ctx.drawImage(imgH, -500, 1500, 1000, 1000);
+                                                    ctx.drawImage(imgI, 500, 1500, 1000, 1000);
+                                                    const finalUrl = finalCanvas.toDataURL();
+                                                    resolve(finalUrl);
+                                                }
+                                                imgI.src = cropped9
+                                            }
+                                            imgH.src = cropped8
+                                        }
+                                        imgG.src = cropped7
+                                    }
+                                    imgF.src = cropped6
+                                }
+                                imgE.src = cropped5
+                            };
+                            imgD.src = cropped4
+                        };
+                        imgC.src = cropped3;
+                    };
+                    imgB.src = cropped2;
+                };
+                imgA.src = cropped1;
+            }
+        };
+
+        img1.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 500);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(1000, 1000);
+            ctx.lineTo(500, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img1, 0, 0, 1000, 1000);
+            cropped1 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img2.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img2, -w / 2, -h / 2, w, h);
+            cropped2 = canvas.toDataURL();
+            tryCombine();
+        };
+        img3.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.beginPath();
+            ctx.moveTo(500, 500);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(1000, 1000);
+            ctx.lineTo(500, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img3, -w / 2, -h / 2, w, h);
+            cropped3 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img4.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(0, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img4, 0, 0, w, h);
+            cropped4 = canvas.toDataURL();
+            tryCombine();
+        };
+        img5.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img5, 0, 0, w, h);
+            ctx.restore();
+            cropped5 = canvas.toDataURL();
+            tryCombine();
+        };
+        img6.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(1000, 1000);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(0, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img7, -w / 2, -h / 2, w, h);
+            cropped6 = canvas.toDataURL();
+            tryCombine();
+        };
+        img7.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(500, 1000);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img7, -w / 2, -h / 2, w, h);
+            ctx.restore();
+            cropped7 = canvas.toDataURL();
+            tryCombine();
+        };
+        img8.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 0);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(500, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(- (Math.PI / 2));
+            ctx.drawImage(img8, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped8 = canvas.toDataURL();
+            tryCombine();
+        };
+        img9.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 500);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.drawImage(img9, 0, 0, w, h);
+            ctx.restore();
+            cropped9 = canvas.toDataURL();
+            tryCombine();
+        };
+
+
+        bgImg.onload = () => {
+            bgLoaded = true;
+            tryCombine();
+        };
+
+        img1.onerror = reject;
+        img2.onerror = reject;
+        img3.onerror = reject;
+        img4.onerror = reject;
+        img5.onerror = reject;
+        img6.onerror = reject;
+        img7.onerror = reject;
+        img8.onerror = reject;
+        img9.onerror = reject;
+        bgImg.onerror = reject;
+    });
+};
+
+const GenPaperA4 = (url1, url2) => {
+    const w = 1000, h = 1000;
+    const x = 0, y = 0;
+
+    return new Promise((resolve, reject) => {
+        const img1 = new Image();
+        const img2 = new Image();
+        const img3 = new Image();
+        const img4 = new Image();
+        const img5 = new Image();
+        const img6 = new Image();
+        const img7 = new Image();
+        const img8 = new Image();
+        const img9 = new Image();
+        const img10 = new Image();
+        const img11 = new Image();
+        const img12 = new Image();
+        const img13 = new Image();
+        const img14 = new Image();
+        const img15 = new Image();
+        const img16 = new Image();
+        const img17 = new Image();
+        const img18 = new Image();
+        const img19 = new Image();
+        const img20 = new Image();
+        const img21 = new Image();
+        const bgImg = new Image();
+
+        img1.crossOrigin = "anonymous";
+        img2.crossOrigin = "anonymous";
+        img3.crossOrigin = "anonymous";
+        img4.crossOrigin = "anonymous";
+        img5.crossOrigin = "anonymous";
+        img6.crossOrigin = "anonymous";
+        img7.crossOrigin = "anonymous";
+        img8.crossOrigin = "anonymous";
+        img9.crossOrigin = "anonymous";
+        img10.crossOrigin = "anonymous";
+        img11.crossOrigin = "anonymous";
+        img12.crossOrigin = "anonymous";
+        img13.crossOrigin = "anonymous";
+        bgImg.crossOrigin = "anonymous";
+
+        img1.src = url2;
+        img2.src = url1;
+        img3.src = url1;
+        img4.src = url1;
+        img5.src = url1;
+        img6.src = url1;
+        img7.src = url1;
+        img8.src = url1;
+        img9.src = url1;
+        img10.src = url1;
+        img11.src = url1;
+        img12.src = url1;
+        img13.src = url1;
+        img14.src = url1;
+        img15.src = url1;
+        img16.src = url1;
+        img17.src = url1;
+        img18.src = url1;
+        img19.src = url1;
+        img20.src = url1;
+        img21.src = url1;
+        bgImg.src = "/bgimage.png";
+
+        let cropped1 = null;
+        let cropped2 = null;
+        let cropped3 = null;
+        let cropped4 = null;
+        let cropped5 = null;
+        let cropped6 = null;
+        let cropped7 = null;
+        let cropped8 = null;
+        let cropped9 = null;
+        let cropped10 = null;
+        let cropped11 = null;
+        let cropped12 = null;
+        let cropped13 = null;
+        let cropped14 = null;
+        let cropped15 = null;
+        let cropped16 = null;
+        let cropped17 = null;
+        let cropped18 = null;
+        let cropped19 = null;
+        let cropped20 = null;
+        let cropped21 = null;
+        let bgLoaded = false;
+
+        const tryCombine = () => {
+            if (cropped1 && cropped2 && cropped3 && cropped4 && cropped5 && cropped6 && cropped7 && cropped8 && cropped9 && cropped10 && cropped11 && cropped12 && cropped13 && cropped14 && cropped15 && cropped16 && cropped17 && cropped18 && cropped19 && cropped20 && cropped21 && bgLoaded) {
+                const finalCanvas = document.createElement("canvas");
+                finalCanvas.width = 2000;
+                finalCanvas.height = 2000;
+                const ctx = finalCanvas.getContext("2d");
+
+                ctx.drawImage(bgImg, 0, 0, finalCanvas.width, finalCanvas.height);
+
+                const imgA = new Image();
+                const imgB = new Image();
+                const imgC = new Image();
+                const imgD = new Image();
+                const imgE = new Image();
+                const imgF = new Image();
+                const imgG = new Image();
+                const imgH = new Image();
+                const imgI = new Image();
+                const imgJ = new Image();
+                const imgK = new Image();
+                const imgL = new Image();
+                const imgM = new Image();
+                const imgN = new Image();
+                const imgO = new Image();
+                const imgP = new Image();
+                const imgQ = new Image();
+                const imgR = new Image();
+                const imgS = new Image();
+                const imgT = new Image();
+                const imgU = new Image();
+                imgA.onload = () => {
+                    imgB.onload = () => {
+                        imgC.onload = () => {
+                            imgD.onload = () => {
+                                imgE.onload = () => {
+                                    imgF.onload = () => {
+                                        imgG.onload = () => {
+                                            imgH.onload = () => {
+                                                imgI.onload = () => {
+                                                    imgJ.onload = () => {
+                                                        imgK.onload = () => {
+                                                            imgL.onload = () => {
+                                                                imgM.onload = () => {
+                                                                    imgN.onload = () => {
+                                                                        imgO.onload = () => {
+                                                                            imgP.onload = () => {
+                                                                                imgQ.onload = () => {
+                                                                                    imgR.onload = () => {
+                                                                                        imgS.onload = () => {
+                                                                                            imgT.onload = () => {
+                                                                                                imgU.onload = () => {
+                                                                                                    ctx.drawImage(imgA, 500, 500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgB, 500, -500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgC, 1000, -500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgD, 0, -500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgE, 500, -500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgF, 1500, 500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgG, 1500, -500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgH, -500, -500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgI, -500, 500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgJ, 1500, 0, 1000, 1000);
+                                                                                                    ctx.drawImage(imgK, -500, 0, 1000, 1000);
+                                                                                                    ctx.drawImage(imgL, 1500, 1000, 1000, 1000);
+                                                                                                    ctx.drawImage(imgM, 1500, 1500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgN, -500, 1500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgO, -500, 1000, 1000, 1000);
+                                                                                                    ctx.drawImage(imgP, 1500, 500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgQ, -500, 500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgR, 500, 1500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgS, 1000, 1500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgT, 0, 1500, 1000, 1000);
+                                                                                                    ctx.drawImage(imgU, 500, 1500, 1000, 1000);
+                                                                                                    const finalUrl = finalCanvas.toDataURL();
+                                                                                                    resolve(finalUrl);
+
+                                                                                                }
+                                                                                                imgU.src = cropped21
+                                                                                            }
+                                                                                            imgT.src = cropped20
+
+                                                                                        }
+                                                                                        imgS.src = cropped19
+                                                                                    }
+                                                                                    imgR.src = cropped18
+
+                                                                                }
+                                                                                imgQ.src = cropped17
+                                                                            }
+                                                                            imgP.src = cropped16
+                                                                        }
+                                                                        imgO.src = cropped15
+                                                                    }
+                                                                    imgN.src = cropped14
+
+                                                                }
+                                                                imgM.src = cropped13
+                                                            }
+                                                            imgL.src = cropped12
+
+                                                        }
+                                                        imgK.src = cropped11
+                                                    }
+                                                    imgJ.src = cropped10
+
+                                                }
+                                                imgI.src = cropped9
+                                            }
+                                            imgH.src = cropped8
+                                        }
+                                        imgG.src = cropped7
+                                    }
+                                    imgF.src = cropped6
+                                }
+                                imgE.src = cropped5
+                            };
+                            imgD.src = cropped4
+                        };
+                        imgC.src = cropped3;
+                    };
+                    imgB.src = cropped2;
+                };
+                imgA.src = cropped1;
+            }
+        };
+
+        img1.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img1, 0, 0, 1000, 1000);
+            cropped1 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img2.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 1000);
+            ctx.lineTo(750, 750);
+            ctx.lineTo(1000, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(2 * (Math.PI / 2));
+            ctx.drawImage(img2, -w / 2, -h / 2, w, h);
+            cropped2 = canvas.toDataURL();
+            tryCombine();
+        };
+        img3.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(250, 500);
+            ctx.lineTo(250, 750);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img3, -w / 2, -h / 2, w, h);
+            cropped3 = canvas.toDataURL();
+            tryCombine();
+        };
+
+        img4.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(750, 500);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(750, 750);
+            ctx.closePath();
+            ctx.clip();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img4, -w / 2, -h / 2, w, h);
+            cropped4 = canvas.toDataURL();
+            tryCombine();
+        };
+        img5.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 1000);
+            ctx.lineTo(250, 750);
+            ctx.lineTo(500, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(2 * (Math.PI / 2));
+            ctx.drawImage(img5, -w / 2, -h / 2, w, h);
+            ctx.restore();
+            cropped5 = canvas.toDataURL();
+            tryCombine();
+        };
+        img6.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(250, 250);
+            ctx.lineTo(0, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.drawImage(img6, 0, 0, w, h);
+            ctx.restore();
+            cropped6 = canvas.toDataURL();
+            tryCombine();
+        };
+        img7.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(250, 500);
+            ctx.lineTo(500, 500);
+            ctx.lineTo(500, 750);
+            ctx.lineTo(250, 750);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(- (Math.PI / 2));
+            ctx.drawImage(img7, -w / 2, -h / 2, w, h);
+            ctx.restore();
+            cropped7 = canvas.toDataURL();
+            tryCombine();
+        };
+        img8.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 500);
+            ctx.lineTo(750, 500);
+            ctx.lineTo(750, 750);
+            ctx.lineTo(500, 750);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img8, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped8 = canvas.toDataURL();
+            tryCombine();
+        };
+        img9.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(750, 250);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(1000, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.drawImage(img9, 0, 0, w, h);
+            ctx.restore();
+            cropped9 = canvas.toDataURL();
+            tryCombine();
+        };
+        img10.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(250, 750);
+            ctx.lineTo(500, 750);
+            ctx.lineTo(500, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img10, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped10 = canvas.toDataURL();
+            tryCombine();
+        };
+        img11.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 750);
+            ctx.lineTo(750, 750);
+            ctx.lineTo(500, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img11, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped11 = canvas.toDataURL();
+            tryCombine();
+        };
+        img12.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(250, 250);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(500, 250);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img12, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped12 = canvas.toDataURL();
+            tryCombine();
+        };
+        img13.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(250, 250);
+            ctx.lineTo(500, 250);
+            ctx.lineTo(500, 750);
+            ctx.lineTo(250, 750);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img13, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped13 = canvas.toDataURL();
+            tryCombine();
+        };
+        img14.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 250);
+            ctx.lineTo(750, 250);
+            ctx.lineTo(750, 500);
+            ctx.lineTo(500, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(-(Math.PI / 2));
+            ctx.drawImage(img14, -w / 2, -h / 2, w, h);
+            ctx.restore();
+            cropped14 = canvas.toDataURL();
+            tryCombine();
+        };
+        img15.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 0);
+            ctx.lineTo(750, 250);
+            ctx.lineTo(500, 250);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(- (Math.PI / 2));
+            ctx.drawImage(img15, -w / 2, -h / 2, w, h);
+            ctx.restore();
+            cropped15 = canvas.toDataURL();
+            tryCombine();
+        };
+        img16.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(250, 750);
+            ctx.lineTo(0, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.drawImage(img16, 0, 0, w, h);
+            ctx.restore();
+
+            cropped16 = canvas.toDataURL();
+            tryCombine();
+        };
+        img17.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(750, 750);
+            ctx.lineTo(1000, 500);
+            ctx.lineTo(1000, 1000);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(2 * (Math.PI / 2));
+            ctx.drawImage(img17, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped17 = canvas.toDataURL();
+            tryCombine();
+        };
+        img18.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(500, 0);
+            ctx.lineTo(1000, 0);
+            ctx.lineTo(750, 250);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(2 * (Math.PI / 2));
+            ctx.drawImage(img18, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped18 = canvas.toDataURL();
+            tryCombine();
+        };
+        img19.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 500);
+            ctx.lineTo(250, 250);
+            ctx.lineTo(250, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate((Math.PI / 2));
+            ctx.drawImage(img19, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped19 = canvas.toDataURL();
+            tryCombine();
+        };
+        img20.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(750, 250);
+            ctx.lineTo(750, 500);
+            ctx.lineTo(1000, 500);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(- (Math.PI / 2));
+            ctx.drawImage(img20, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped20 = canvas.toDataURL();
+            tryCombine();
+        };
+        img21.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = 1000;
+            canvas.height = 1000;
+            const w = 1000, h = 1000;
+            const x = 0, y = 0;
+            const ctx = canvas.getContext("2d");
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(500, 0);
+            ctx.lineTo(250, 250);
+            ctx.closePath();
+            ctx.clip();
+            ctx.save();
+            ctx.translate(x + w / 2, y + h / 2);
+            ctx.rotate(2 * (Math.PI / 2));
+            ctx.drawImage(img21, -w / 2, -h / 2, w, h);
+            ctx.restore();
+
+            cropped21 = canvas.toDataURL();
+            tryCombine();
+        };
+        bgImg.onload = () => {
+            bgLoaded = true;
+            tryCombine();
+        };
+
+        img1.onerror = reject;
+        img2.onerror = reject;
+        img3.onerror = reject;
+        img4.onerror = reject;
+        img5.onerror = reject;
+        img6.onerror = reject;
+        img7.onerror = reject;
+        img8.onerror = reject;
+        img9.onerror = reject;
+        img10.onerror = reject;
+        img11.onerror = reject;
+        img12.onerror = reject;
+        img13.onerror = reject;
+        img14.onerror = reject;
+        img15.onerror = reject;
+        img16.onerror = reject;
+        img17.onerror = reject;
+        img18.onerror = reject;
+        img19.onerror = reject;
+        img20.onerror = reject;
+        img21.onerror = reject;
+        bgImg.onerror = reject;
+    });
+};
+
 export {
     GenPaperA, GenPaperB, GenPaperC, GenPaperD,
     GenPaperE, GenPaperF, GenPaperG, GenPaperH,
@@ -5961,5 +7580,6 @@ export {
     GenPaperM, GenPaperN, GenPaperO, GenPaperP,
     GenPaperQ, GenPaperR, GenPaperS, GenPaperT,
     GenPaperU, GenPaperV, GenPaperW, GenPaperX,
-    GenPaperY
+    GenPaperY, GenPaperZ, GenPaperA1, GenPaperA2,
+    GenPaperA3, GenPaperA4
 };

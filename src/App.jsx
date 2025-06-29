@@ -8,7 +8,8 @@ import {
   GenPaperM, GenPaperN, GenPaperO, GenPaperP,
   GenPaperQ, GenPaperR, GenPaperS, GenPaperT,
   GenPaperU, GenPaperV, GenPaperW, GenPaperX,
-  GenPaperY
+  GenPaperY, GenPaperZ, GenPaperA1, GenPaperA2,
+  GenPaperA3, GenPaperA4
 } from "./GenPaper";
 import { v4 as uuidv4 } from 'uuid';
 import JSZip from "jszip";
@@ -49,7 +50,12 @@ function App() {
     { func: GenPaperV, imag: "/type22.png" },
     { func: GenPaperW, imag: "/type23.png" },
     { func: GenPaperX, imag: "/type24.png" },
-    { func: GenPaperY, imag: "/type25.png" }
+    { func: GenPaperY, imag: "/type25.png" },
+    { func: GenPaperZ, imag: "/type26.png" },
+    { func: GenPaperA1, imag: "/type27.png" },
+    { func: GenPaperA2, imag: "/type28.png" },
+    { func: GenPaperA3, imag: "/type29.png" },
+    { func: GenPaperA4, imag: "/type30.png" }
   ]
 
   const downloadImagesAsZip = async (dataUrls, zipName = "images.zip") => {
