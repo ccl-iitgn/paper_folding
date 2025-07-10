@@ -1,12 +1,29 @@
-# React + Vite
+# Paper Folding Puzzle (Manifold)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Paper Folding Puzzle** is a web-based tool that allows users to generate printable folding puzzles by uploading two images. The system creates foldable paper sheets where folding reveals one image while hiding or aligning parts of another — forming a creative, tactile puzzle challenge.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧩 Features
 
-## Expanding the ESLint configuration
+- 🖼️ **Dual Image Upload**: Upload a *target image* (final folded view) and a *source image* (initial flat layout).
+- 🧠 **30 Auto-Generation Algorithms**: Apply different logic rules to generate varied puzzle layouts.
+- 🧾 **Printable Output**: Download final puzzle sheets as PNG or Zip(for multi) for offline use.
+- 🏷️ **Difficulty Labels**: Hardness levels (e.g., Easy, Medium, Hard) help organize puzzle sets.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧪 How to Run
+
+```bash
+# Clone the repository
+git clone https://github.com/ccl-iitgn/paper_folding.git
+cd paper_folding
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# → App runs at http://localhost:5173/
